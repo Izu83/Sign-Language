@@ -81,6 +81,16 @@ python src/main.py
 
 The first launch downloads Google's hand-tracking model (about 8 MB) into `models/`, so it needs an internet connection once.
 
+<h2><img src="assets/headers/on-your-iphone.svg" alt="On your iPhone" width="100%"></h2>
+The same trainer also runs as a web app, so it works on an iPhone with no App Store and no Mac. It installs to the home screen and opens full-screen like a normal app.
+
+1. On GitHub, open **Settings → Pages** and set **Source** to **GitHub Actions** (one time only). The site is published automatically on every push.
+2. On your iPhone, open **https://izu83.github.io/Sign-Language/** in **Safari**.
+3. Tap **Share → Add to Home Screen**.
+4. Open it from the home screen, tap **Start camera** and allow camera access.
+
+The camera image never leaves your phone. The hand-tracking model (about 8 MB) is downloaded on the first launch and kept on the phone, so after that it also opens offline. It needs iOS 16 or newer with Safari.
+
 <h2><img src="assets/headers/how-to-use-it.svg" alt="How to use it" width="100%"></h2>
 
 1. Pick a mode at the top of the right-hand panel.
@@ -98,7 +108,7 @@ The first launch downloads Google's hand-tracking model (about 8 MB) into `model
 
 <h2><img src="assets/headers/how-it-works.svg" alt="How it works" width="100%"></h2>
 
-Each sign is described once in `src/signs.py`: how curled each finger is, and what the thumb is doing. That single description is used twice.
+Each sign is described once in `signs.json`: how curled each finger is, and what the thumb is doing. That single description is used twice.
 
 - **Recognition.** MediaPipe finds 21 landmarks on your hand. The app measures how curled each finger is and where the thumb is, then picks the closest matching sign. The sign has to be held for a few frames so a passing hand shape does not count.
 - **Pictures.** `src/art.py` draws the illustration for each sign from the same description, so the picture you see is the shape the camera looks for.
@@ -107,10 +117,13 @@ Each sign is described once in `src/signs.py`: how curled each finger is, and wh
 
 | Path | What it is |
 | --- | --- |
-| `src/main.py` | The window, camera loop and progress |
-| `src/signs.py` | The signs and the code that recognises them |
+| `src/main.py` | The desktop window, camera loop and progress |
+| `signs.json` | The list of signs, shared by the desktop and the web app |
+| `src/signs.py` | Loads the signs and recognises them (desktop) |
 | `src/art.py` | Draws the pictures (`python src/art.py` redraws all of them) |
 | `images/` | One PNG per sign |
+| `web/` | The iPhone / browser version (installable web app) |
+| `.github/workflows/` | Publishes the web app to GitHub Pages |
 | `assets/` | The banner and section headers used in this README |
 | `models/` | The downloaded hand model (not committed) |
 | `data/` | Your saved progress and settings (not committed) |
@@ -121,7 +134,7 @@ Each sign is described once in `src/signs.py`: how curled each finger is, and wh
 - **Colours.** Cyprus `#004643` and Sand `#F0EDE5`, defined at the top of `src/main.py` and `src/art.py`.
 - **How long to hold a sign.** `HOLD_FRAMES` in `src/main.py`.
 - **How strict matching is.** The thresholds in `src/signs.py` (`detect` and `_curl`).
-- **Add a sign.** Add an entry to `SIGNS` in `src/signs.py` with its finger curls and thumb, then run `python src/art.py` to draw its picture.
+- **Add a sign.** Add an entry to `signs.json` with its finger curls and thumb, then run `python src/art.py` to draw its picture. Both the desktop and the iPhone version pick it up.
 
 <h2><img src="assets/headers/troubleshooting.svg" alt="Troubleshooting" width="100%"></h2>
 
@@ -129,6 +142,8 @@ Each sign is described once in `src/signs.py`: how curled each finger is, and wh
 - **The model will not download.** Download `hand_landmarker.task` from Google's MediaPipe models page and put it in `models/`.
 - **A sign will not register.** Keep your whole hand in view, well lit, with the palm facing the camera, and hold it still for a moment. Similar shapes such as D and L, or O and OK, need the thumb clearly placed.
 - **Wrong font.** The app uses Georgia unless the font in `FONT_NAME` is installed.
+- **iPhone: camera blocked.** Open Settings → Safari → Camera and allow it, or remove the app from the home screen and add it again.
+- **iPhone: the page does not update.** Close the app fully and reopen it while online; the newest version is picked up on the next launch.
 
 <p align="center">
   <img src="assets/avatar.png" width="56" alt="Izu83"><br>

@@ -1,0 +1,103 @@
+:root {
+  --cyprus: #004643;
+  --cyprus-2: #0b6560;
+  --sand: #f0ede5;
+  --sand-dim: #d9d5cb;
+  --font: "Gastilo", Georgia, "Times New Roman", serif;
+}
+
+* { box-sizing: border-box; margin: 0; -webkit-tap-highlight-color: transparent; }
+[hidden] { display: none !important; }
+
+html, body { height: 100%; }
+body {
+  background: var(--cyprus);
+  color: var(--sand);
+  font-family: var(--font);
+  overscroll-behavior: none;
+}
+
+button { font: inherit; cursor: pointer; }
+
+/* ---------- start screen ---------- */
+.start {
+  min-height: 100dvh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 16px; padding: 32px 28px calc(32px + env(safe-area-inset-bottom));
+  text-align: center;
+  background: linear-gradient(160deg, #002d2b, var(--cyprus) 55%, var(--cyprus-2));
+}
+.start .logo { width: 112px; height: 112px; border-radius: 26px; }
+.start h1 { font-size: 40px; }
+.start p { max-width: 320px; font-size: 18px; line-height: 1.4; opacity: .9; }
+.start .note { font-size: 14px; opacity: .65; }
+
+.primary {
+  background: var(--sand); color: var(--cyprus);
+  border: 0; border-radius: 14px; padding: 14px 28px; font-size: 20px; min-height: 52px;
+}
+.primary:active { transform: scale(.98); }
+
+/* ---------- app ---------- */
+.app { display: flex; flex-direction: column; height: 100dvh; }
+
+.camera {
+  position: relative; flex: 0 0 42%; min-height: 0; overflow: hidden;
+  background: #00312f;
+  padding-top: env(safe-area-inset-top);
+}
+.camera video, .camera canvas {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; transform: scaleX(-1);
+}
+.status {
+  position: absolute; left: 12px; bottom: 12px;
+  background: var(--sand); color: var(--cyprus);
+  padding: 5px 12px; border-radius: 999px; font-size: 14px;
+}
+.chip {
+  position: absolute; right: 12px; top: calc(12px + env(safe-area-inset-top));
+  background: rgba(240, 237, 229, .92); color: var(--cyprus);
+  border: 0; border-radius: 999px; padding: 8px 14px; font-size: 14px; min-height: 36px;
+}
+.banner {
+  position: absolute; top: calc(56px + env(safe-area-inset-top)); left: 50%; transform: translateX(-50%);
+  background: var(--sand); color: var(--cyprus); padding: 8px 20px; border-radius: 12px; font-size: 22px;
+  animation: pop .25s ease-out;
+}
+@keyframes pop { from { transform: translateX(-50%) scale(.8); opacity: 0; } }
+
+.sheet {
+  flex: 1; min-height: 0;
+  background: var(--sand); color: var(--cyprus);
+  border-radius: 24px 24px 0 0; margin-top: -20px; position: relative;
+  padding: 16px 20px calc(12px + env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+.modes {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border: 2px solid var(--cyprus); border-radius: 12px; overflow: hidden;
+}
+.mode { border: 0; background: transparent; color: var(--cyprus); padding: 10px 6px; font-size: 15px; min-height: 44px; }
+.mode.active { background: var(--cyprus); color: var(--sand); }
+
+.progress { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+.bar { flex: 1; height: 6px; background: var(--sand-dim); border-radius: 3px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--cyprus); transition: width .3s; }
+
+.card { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; }
+.picture { flex: 1; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; }
+.picture img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.placeholder { font-size: 96px; line-height: 1; }
+h2 { font-size: 30px; font-weight: 400; }
+.how { font-size: 15px; line-height: 1.35; max-width: 340px; opacity: .85; }
+
+.actions { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.actions .primary { background: var(--cyprus); color: var(--sand); width: 100%; }
+.link { background: none; border: 0; color: var(--cyprus); font-size: 15px; padding: 8px 12px; text-decoration: underline; min-height: 40px; }
+
+@media (max-height: 640px) {
+  .camera { flex-basis: 34%; }
+  .how { display: none; }
+}
