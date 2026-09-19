@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="76" viewBox="0 0 1000 76" role="img" aria-label="Customising">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#004643"/>
+      <stop offset="1" stop-color="#0b6560"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="76" rx="16" fill="url(#g)"/>
+  <rect x="0" y="0" width="12" height="76" rx="6" fill="#F0EDE5"/>
+  <text x="38" y="52" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700" fill="#F0EDE5">Customising</text>
+</svg>
