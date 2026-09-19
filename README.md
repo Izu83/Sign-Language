@@ -14,6 +14,10 @@
   and the app checks it and moves on to the next.
 </p>
 
+<p align="center">
+  <a href="https://izu83.github.io/Sign-Language/"><b>Try it live in your browser &rarr;</b></a>
+</p>
+
 <h2><img src="assets/headers/what-it-does.svg" alt="What it does" width="100%"></h2>
 
 - **Tracks your hand** with your webcam and recognises 22 signs: letters, numbers and everyday words.
@@ -82,14 +86,23 @@ python src/main.py
 The first launch downloads Google's hand-tracking model (about 8 MB) into `models/`, so it needs an internet connection once.
 
 <h2><img src="assets/headers/on-your-iphone.svg" alt="On your iPhone" width="100%"></h2>
-The same trainer also runs as a web app, so it works on an iPhone with no App Store and no Mac. It installs to the home screen and opens full-screen like a normal app.
+The trainer also runs as a web app, so it works on an iPhone with no App Store and no Mac. It installs to the home screen and opens full-screen like a normal app.
 
-1. On GitHub, open **Settings → Pages** and set **Source** to **GitHub Actions** (one time only). The site is published automatically on every push.
-2. On your iPhone, open **https://izu83.github.io/Sign-Language/** in **Safari**.
-3. Tap **Share → Add to Home Screen**.
-4. Open it from the home screen, tap **Start camera** and allow camera access.
+<table>
+  <tr>
+    <td align="center" width="200"><img src="assets/qr.png" width="170" alt="QR code for the live app"><br><sub>Scan with your iPhone camera</sub></td>
+    <td>
+      <b>Live app:</b> <a href="https://izu83.github.io/Sign-Language/">izu83.github.io/Sign-Language</a><br><br>
+      1. Open the link in <b>Safari</b> on your iPhone.<br>
+      2. Tap <b>Share &rarr; Add to Home Screen</b>.<br>
+      3. Open it from the home screen, tap <b>Start camera</b> and allow camera access.
+    </td>
+  </tr>
+</table>
 
 The camera image never leaves your phone. The hand-tracking model (about 8 MB) is downloaded on the first launch and kept on the phone, so after that it also opens offline. It needs iOS 16 or newer with Safari.
+
+**Hosting your own copy.** Fork the repo, then open **Settings &rarr; Pages** and set **Source** to **GitHub Actions**. The site is rebuilt and published on every push to `main`.
 
 <h2><img src="assets/headers/how-to-use-it.svg" alt="How to use it" width="100%"></h2>
 
